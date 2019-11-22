@@ -5,8 +5,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "{{module}}",
-  "description": "ldap",
+  "main": "src/service-ldap.mjs",
+  "module": "src/service-ldap.mjs",
+  "description": "ldap auth service",
   "keywords": [],
   "contributors": [
     {
@@ -17,11 +18,14 @@
   "license": "BSD-2-Clause",
   "scripts": {
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
-    "docs": "documentation readme {{module}} --section=API",
-    "lint": "documentation lint {{module}}",
+    "docs": "documentation readme src/service-ldap.mjs --section=API",
+    "lint": "documentation lint src/service-ldap.mjs",
     "test": "ava"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@kronos-integration/service": "^6.1.20",
+    "ldapts": "^1.10.0"
+  },
   "devDependencies": {
     "ava": "^2.4.0",
     "c8": "^6.0.1",
