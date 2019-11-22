@@ -5,15 +5,21 @@ branches:
     - /^greenkeeper/.*$/
     - /^mkpr/.*$/
     - /^npm-template-sync/.*$/
+addons:
+  apt:
+    packages:
+      - ldap-utils
+      - slapd
 jobs:
   include:
     - stage: test
       node_js:
-        - '-10'
-        - '-12'
-        - '-13'
-        - 12.13.1
-        - 13.1.0
+        - 12.13.0
+      before_script:
+        - mkdir /tmp/slapd
+        - 'slapd -f tests/fixtures/ldap/slapd.conf -h ldap://localhost:3389 &'
+        - sleep 3
+        - 'ldapadd -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif'
       script:
         - npm run cover
         - npx codecov
