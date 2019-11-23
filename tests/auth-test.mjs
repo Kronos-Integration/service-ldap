@@ -29,6 +29,20 @@ test("service-ldap auth ok", async t => {
   t.deepEqual(await ldap.authenticate({ username: 'user1', password: 'test' }), { username: 'user1', entitlements: new Set(['konsum']) });
 });
 
+test("service-ldap over endpoint", async t => {
+  const sp = new StandaloneServiceProvider();
+  const ldap = new ServiceLDAP(
+    config,
+    sp
+  );
+
+  await ldap.start();
+
+  t.is(ldap.state, "running");
+
+  t.deepEqual(await ldap.endpoints.authenticate.receive({ username: 'user1', password: 'test' }), { username: 'user1', entitlements: new Set(['konsum']) });
+});
+
 test("service-ldap auth invalid", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = new ServiceLDAP(
