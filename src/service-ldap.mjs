@@ -75,7 +75,7 @@ export class ServiceLDAP extends Service {
 
     try {
       const bindDN = expand(this.bindDN);
-     
+
       this.trace(`bind ${bindDN}`);
       await this.client.bind(bindDN, password);
 
@@ -86,13 +86,10 @@ export class ServiceLDAP extends Service {
       };
 
       const base = expand(this.entitlements.base);
-      
+
       this.trace(`search ${base} ${JSON.stringify(searchOptions)}`);
 
-      const { searchEntries } = await this.client.search(
-        base,
-        searchOptions
-      );
+      const { searchEntries } = await this.client.search(base, searchOptions);
 
       const entitlements = new Set();
 
@@ -109,6 +106,5 @@ export class ServiceLDAP extends Service {
     }
   }
 }
-
 
 export default ServiceLDAP;
