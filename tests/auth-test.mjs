@@ -40,9 +40,7 @@ test("service-ldap auth invalid", async t => {
 
   t.is(ldap.state, "running");
 
-  await t.throwsAsync(async () => ldap.authenticate({ username: 'user1', password: 'invalid' }), 'Invalid credentials during a bind operation');
-
-  //t.deepEqual(await ldap.authenticate({ username: 'user1', password: 'invalid' }), { username: 'user1', entitlements: new Set() });
+  await t.throwsAsync(async () => ldap.authenticate({ username: 'user1', password: 'invalid' }), 'Invalid credentials during a bind operation. Code: 0x31');
 });
 
 test("service-ldap wrong url", async t => {
