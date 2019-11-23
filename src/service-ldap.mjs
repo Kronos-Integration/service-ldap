@@ -109,3 +109,6 @@ export class ServiceLDAP extends Service {
     }
   }
 }
+
+
+export default ServiceLDAP;
