@@ -50,5 +50,5 @@ test("service-ldap no bind", async t => {
 
   t.is(ldap.state, "running");
 
- // t.deepEqual(await ldap.authenticate({ username: 'user1', password: 'test' }), { username: 'user1', entitlements: new Set(['konsum']) });
+  await t.throwsAsync(async () => ldap.authenticate({ username: 'user1', password: 'test' }), Error);
 });
