@@ -40,7 +40,9 @@ test("service-ldap auth invalid", async t => {
 
   t.is(ldap.state, "running");
 
-  t.deepEqual(await ldap.authenticate({ username: 'user1', password: 'invalid' }), { username: 'user1', entitlements: new Set() });
+  await t.throwsAsync(async () => ldap.authenticate({ username: 'user1', password: 'invalid' }), 'Invalid credentials during a bind operation');
+
+  //t.deepEqual(await ldap.authenticate({ username: 'user1', password: 'invalid' }), { username: 'user1', entitlements: new Set() });
 });
 
 test("service-ldap wrong url", async t => {
@@ -48,8 +50,8 @@ test("service-ldap wrong url", async t => {
 
   const ldap = new ServiceLDAP(
     {
-      url: "ldap://localhost:3388",
-      ...config
+      ...config,
+      url: "ldap://localhost:3388"
     },
     sp
   );
