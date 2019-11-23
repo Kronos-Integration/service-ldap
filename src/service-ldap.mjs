@@ -16,10 +16,10 @@ export class ServiceLDAP extends Service {
           type: "url"
         },
         bindDN: {
-          needsRestart: true,
           type: "string"
         },
         entitlements: {
+          description: "attributes to build a entitlement query",
           attributes: {
             base: {
               type: "string"
@@ -54,7 +54,7 @@ export class ServiceLDAP extends Service {
   }
 
   /**
-   * authorize user / password
+   * authorize with username and password
    * @param {Object} props
    * @param {string} props.username
    * @param {string} props.password
@@ -74,8 +74,10 @@ export class ServiceLDAP extends Service {
     }
 
     try {
-      this.trace(`bind ${expand(this.bindDN)}`);
-      await this.client.bind(expand(this.bindDN), password);
+      constant bindDN = expand(this.bindDN);
+     
+      this.trace(`bind ${bindDN}`);
+      await this.client.bind(bindDN, password);
 
       const searchOptions = {
         scope: this.entitlements.scope,
@@ -83,10 +85,12 @@ export class ServiceLDAP extends Service {
         attributes: [this.entitlements.attribute]
       };
 
-      this.trace(`search ${expand(this.entitlements.base)} ${JSON.stringify(searchOptions)}`);
+      const base = expand(this.entitlements.base);
+      
+      this.trace(`search ${base} ${JSON.stringify(searchOptions)}`);
 
       const { searchEntries } = await this.client.search(
-        expand(this.entitlements.base),
+        base,
         searchOptions
       );
 
