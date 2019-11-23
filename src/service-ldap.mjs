@@ -76,7 +76,7 @@ export class ServiceLDAP extends Service {
     try {
       const bindDN = expand(this.bindDN);
 
-      this.trace(`bind ${bindDN}`);
+      this.trace(`bind ${bindDN} (${this.bindDN})`);
       await this.client.bind(bindDN, password);
 
       const searchOptions = {
