@@ -50,7 +50,7 @@ export class ServiceLDAP extends Service {
 
   async _stop() {
     delete this.client;
-    return super._strop();
+    return super._stop();
   }
 
   /**
