@@ -12,7 +12,7 @@ export class ServiceLDAP extends Service {
       createAttributes({
         url: {
           needsRestart: true,
-          madatory: true,
+          mandatory: true,
           type: "url"
         },
         bindDN: {
