@@ -4,6 +4,7 @@ import { ServiceLDAP } from "../src/service-ldap.mjs";
 
 
 const config = {
+  type: ServiceLDAP,
   url: "ldap://localhost:3389",
   bindDN: "uid={{username}},ou=accounts,dc=example,dc=com",
   entitlements: {
@@ -17,10 +18,11 @@ const config = {
 
 test("service-ldap auth ok", async t => {
   const sp = new StandaloneServiceProvider();
-  const ldap = new ServiceLDAP(
-    config,
-    sp
-  );
+  
+  const ldap = await sp.declareService({
+    type: ServiceLDAP,
+    ...config
+  });
 
   await ldap.start();
 
@@ -31,10 +33,7 @@ test("service-ldap auth ok", async t => {
 
 test("service-ldap over endpoint", async t => {
   const sp = new StandaloneServiceProvider();
-  const ldap = new ServiceLDAP(
-    config,
-    sp
-  );
+  const ldap = await sp.declareService(config);
 
   await ldap.start();
 
@@ -45,10 +44,7 @@ test("service-ldap over endpoint", async t => {
 
 test("service-ldap auth invalid", async t => {
   const sp = new StandaloneServiceProvider();
-  const ldap = new ServiceLDAP(
-    config,
-    sp
-  );
+  const ldap = await sp.declareService();
 
   await ldap.start();
 
@@ -59,14 +55,10 @@ test("service-ldap auth invalid", async t => {
 
 test("service-ldap wrong url", async t => {
   const sp = new StandaloneServiceProvider();
-
-  const ldap = new ServiceLDAP(
-    {
-      ...config,
-      url: "ldap://localhost:3388"
-    },
-    sp
-  );
+  const ldap = await sp.declareService({
+    ...config,
+    url: "ldap://localhost:3388"
+  });
 
   await ldap.start();
 
