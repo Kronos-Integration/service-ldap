@@ -37,7 +37,6 @@ export class ServiceLDAP extends Service {
     return {
       ...super.endpoints,
       authenticate: {
-        default: true,
         receive: "authenticate"
       }
     };
