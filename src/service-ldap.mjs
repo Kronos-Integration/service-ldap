@@ -62,6 +62,8 @@ export class ServiceLDAP extends Service {
   async authenticate(props) {
     const { username, password } = props;
 
+    await this.start();
+    
     const values = {
       username
     };
