@@ -78,12 +78,15 @@ export class ServiceLDAP extends Service {
       const bindDN = expand(this.bindDN);
 
       this.trace(`bind ${bindDN} (${this.bindDN})`);
+
       await this.client.bind(bindDN, password);
+
+      const attribute = expand(this.entitlements.attribute);
 
       const searchOptions = {
         scope: this.entitlements.scope,
         filter: expand(this.entitlements.filter),
-        attributes: [this.entitlements.attribute]
+        attributes: [attribute]
       };
 
       const base = expand(this.entitlements.base);
@@ -92,14 +95,9 @@ export class ServiceLDAP extends Service {
 
       const { searchEntries } = await this.client.search(base, searchOptions);
 
-      const entitlements = new Set();
+      const entitlements = new Set(searchEntries.map(e => e[attribute]));
 
-      searchEntries.forEach(e => {
-        const entitlement = e[this.entitlements.attribute];
-        entitlements.add(entitlement);
-      });
-
-      this.trace(`result ${[...entitlements]}`);
+      this.trace(`entitlements ${[...entitlements]}`);
 
       return { username, entitlements };
     } finally {
