@@ -8,7 +8,7 @@
   "main": "src/service-ldap.mjs",
   "module": "src/service-ldap.mjs",
   "description": "ldap auth service",
-  "keywords": [],
+  "keywords": ["ldap"],
   "contributors": [
     {
       "name": "Markus Felten",
@@ -23,7 +23,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/service": "^7.1.8",
+    "@kronos-integration/service": "^7.1.13",
     "ldapts": "^1.10.0"
   },
   "devDependencies": {
