@@ -8,7 +8,9 @@
   "main": "src/service-ldap.mjs",
   "module": "src/service-ldap.mjs",
   "description": "ldap auth service",
-  "keywords": ["ldap"],
+  "keywords": [
+    "ldap"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
