@@ -26,7 +26,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/service": "^8.3.4",
+    "@kronos-integration/service": "^8.3.9",
     "ldapts": "^2.0.1"
   },
   "devDependencies": {
