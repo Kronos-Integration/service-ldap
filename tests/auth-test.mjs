@@ -5,8 +5,8 @@ import { ServiceLDAP } from "../src/service-ldap.mjs";
 const config = {
   type: ServiceLDAP,
   url: "ldap://localhost:3389",
-  bindDN: "uid={{username}},ou=accounts,dc=example,dc=com",
   entitlements: {
+    bindDN: "uid={{username}},ou=accounts,dc=example,dc=com",
     base: "ou=groups,dc=example,dc=com",
     attribute: "cn",
     scope: "sub",

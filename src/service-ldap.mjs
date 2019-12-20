@@ -21,6 +21,9 @@ export class ServiceLDAP extends Service {
         entitlements: {
           description: "attributes to build a entitlement query",
           attributes: {
+            bindDN: {
+              type: "string"
+            },    
             base: {
               type: "string"
             },
@@ -38,6 +41,9 @@ export class ServiceLDAP extends Service {
       ...super.endpoints,
       authenticate: {
         receive: "authenticate"
+      },
+      search: {
+        receive: "search"
       }
     };
   }
@@ -52,6 +58,18 @@ export class ServiceLDAP extends Service {
     return super._stop();
   }
 
+  async search(query) {
+    await this.start();
+
+    try {
+      await this.client.bind(this.bindDN);
+      const { entries } = await this.client.search(query.base, query.options);
+      return entries;
+    } finally {
+      await this.client.unbind();
+    }
+  }
+
   /**
    * authorize with username and password
    * @param {Object} props
@@ -63,7 +81,7 @@ export class ServiceLDAP extends Service {
     const { username, password } = props;
 
     await this.start();
-    
+
     const values = {
       username
     };
@@ -75,9 +93,9 @@ export class ServiceLDAP extends Service {
     }
 
     try {
-      const bindDN = expand(this.bindDN);
+      const bindDN = expand(this.entitlements.bindDN);
 
-      this.trace(`bind ${bindDN} (${this.bindDN})`);
+      this.trace(`bind ${bindDN} (${this.entitlements.bindDN})`);
 
       await this.client.bind(bindDN, password);
 
