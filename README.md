@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/Kronos-Integration/service-ldap.png)](http://travis-ci.org/Kronos-Integration/service-ldap)
 [![codecov.io](http://codecov.io/github/Kronos-Integration/service-ldap/coverage.svg?branch=master)](http://codecov.io/github/Kronos-Integration/service-ldap?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![downloads](http://img.shields.io/npm/dm/service-ldap.svg?style=flat-square)](https://npmjs.org/package/service-ldap)
+[![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-ldap.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-ldap)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-ldap.svg?style=flat-square)](https://github.com/Kronos-Integration/service-ldap/issues)
 [![Greenkeeper](https://badges.greenkeeper.io/Kronos-Integration/service-ldap.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-ldap/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-ldap)
