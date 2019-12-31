@@ -18,9 +18,6 @@ const config = {
 test("service-ldap auth ok", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
-  await ldap.start();
-
-  t.is(ldap.state, "running");
 
   t.deepEqual(
     await ldap.authenticate({ username: "user1", password: "test" }),
@@ -31,9 +28,6 @@ test("service-ldap auth ok", async t => {
 test("service-ldap over endpoint", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
-  await ldap.start();
-
-  t.is(ldap.state, "running");
 
   t.deepEqual(
     await ldap.endpoints.authenticate.receive({
@@ -47,9 +41,6 @@ test("service-ldap over endpoint", async t => {
 test("service-ldap auth invalid", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
-  await ldap.start();
-
-  t.is(ldap.state, "running");
 
   await t.throwsAsync(
     async () => ldap.authenticate({ username: "user1", password: "invalid" }),
@@ -63,10 +54,6 @@ test("service-ldap wrong url", async t => {
     ...config,
     url: "ldap://localhost:3388"
   });
-
-  await ldap.start();
-
-  t.is(ldap.state, "running");
 
   await t.throwsAsync(
     async () => ldap.authenticate({ username: "user1", password: "test" }),
