@@ -17,5 +17,5 @@ case $(uname) in
 esac
 
 
-${SLAPD} -f ${SLAPD_CONF} -h ldap://localhost:3389 -d 9 &
+${SLAPD} -f ${SLAPD_CONF} -h ldap://localhost:3389 -d 1 &
 ldapadd -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif

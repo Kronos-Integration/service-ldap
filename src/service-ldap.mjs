@@ -23,7 +23,7 @@ export class ServiceLDAP extends Service {
           attributes: {
             bindDN: {
               type: "string"
-            },    
+            },
             base: {
               type: "string"
             },
@@ -62,9 +62,9 @@ export class ServiceLDAP extends Service {
     await this.start();
 
     try {
-      await this.client.bind(this.bindDN);
-      const { entries } = await this.client.search(query.base, query.options);
-      return entries;
+      await this.client.bind(query.bindDN, query.password);
+      return await this.client.search(query.base, query);
+    //  return entries;
     } finally {
       await this.client.unbind();
     }
