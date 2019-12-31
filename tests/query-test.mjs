@@ -25,6 +25,10 @@ test("service-ldap search", async t => {
         filter: "(objectclass=groupOfUniqueNames)"
       })
     ).searchEntries,
-    [{ cn: "konsum", dn: "cn=konsum,ou=groups,dc=example,dc=com" }]
+    [
+      { cn: "konsum", dn: "cn=konsum,ou=groups,dc=example,dc=com" },
+      { cn: "service1", dn: "cn=service1,ou=groups,dc=example,dc=com" },
+      { cn: "service2", dn: "cn=service2,ou=groups,dc=example,dc=com" }
+    ]
   );
 });

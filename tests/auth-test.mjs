@@ -21,7 +21,7 @@ test("service-ldap auth ok", async t => {
 
   t.deepEqual(
     await ldap.authenticate({ username: "user1", password: "test" }),
-    { username: "user1", entitlements: new Set(["konsum"]) }
+    { username: "user1", entitlements: new Set(["konsum","service1","service2"]) }
   );
 });
 
@@ -34,7 +34,7 @@ test("service-ldap over endpoint", async t => {
       username: "user1",
       password: "test"
     }),
-    { username: "user1", entitlements: new Set(["konsum"]) }
+    { username: "user1", entitlements: new Set(["konsum","service1","service2"]) }
   );
 });
 
