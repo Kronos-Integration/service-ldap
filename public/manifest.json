@@ -1,0 +1,10 @@
+{
+  "name": "@kronos-integration/service-ldap",
+  "description": "ldap auth service",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
