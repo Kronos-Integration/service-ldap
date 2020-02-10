@@ -14,7 +14,6 @@ jobs:
   include:
     - stage: test
       node_js:
-        - 12.15.0
         - 13.8.0
       before_script:
         - mkdir /tmp/slapd
