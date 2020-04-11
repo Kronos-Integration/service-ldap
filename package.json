@@ -26,7 +26,7 @@
     "lint": "documentation lint src/service-ldap.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^8.3.16",
+    "@kronos-integration/service": "8.3.21",
     "ldapts": "^2.2.0"
   },
   "devDependencies": {
