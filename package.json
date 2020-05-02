@@ -8,7 +8,7 @@
   "type": "module",
   "main": "src/service-ldap.mjs",
   "exports": {
-    ".": "./src/service-ldap.mjs",
+    ".": "src/service-ldap.mjs",
     "./": "./"
   },
   "description": "ldap auth service",
