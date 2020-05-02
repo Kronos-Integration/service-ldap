@@ -1,6 +1,6 @@
 import test from "ava";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-import { ServiceLDAP } from "../src/service-ldap.mjs";
+import { ServiceLDAP } from "@kronos-integration/service-ldap";
 
 const config = {
   type: ServiceLDAP,
