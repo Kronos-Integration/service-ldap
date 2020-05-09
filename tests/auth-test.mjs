@@ -2,7 +2,7 @@ import test from "ava";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceLDAP } from "@kronos-integration/service-ldap";
 
-const PORT=process.env.PORT | 3389;
+const PORT=process.env.PORT | 389;
 
 const config = {
   type: ServiceLDAP,
