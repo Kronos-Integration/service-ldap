@@ -36,7 +36,7 @@ jobs:
           ${{ runner.os }}-
 
     - name: Load LDAP data
-       run: docker ps
+    - run: docker ps
 
 #      run: ldapadd -h localhost:3389 -D cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
 
