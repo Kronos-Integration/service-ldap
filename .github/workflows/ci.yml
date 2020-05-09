@@ -38,8 +38,8 @@ jobs:
       - name: Load LDAP data
         run: docker ps
 
-      - name: Install ldap-utils
-        run: sudo apt-get install ldap-utils
+      #- name: Install ldap-utils
+      #  run: sudo apt-get install ldap-utils
 
       #      run: ldapadd -h localhost:3389 -D cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
 
