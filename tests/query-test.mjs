@@ -2,9 +2,11 @@ import test from "ava";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceLDAP } from "@kronos-integration/service-ldap";
 
+const PORT=process.env.PORT | 3389;
+
 const config = {
   type: ServiceLDAP,
-  url: "ldap://localhost:3389",
+  url: `ldap://localhost:${PORT}`,
   bindDN: "ou=accounts,dc=example,dc=com"
 };
 
