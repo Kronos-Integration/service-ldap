@@ -14,8 +14,9 @@ jobs:
           LDAP_ORGANISATION: "Example Corp"
           LDAP_ROOTPASS: test
         ports:
-          - 389:3389
-          - 3389:389
+           - 389:389
+  #        - 389:3389
+  #        - 3389:389
 
     strategy:
       matrix:
