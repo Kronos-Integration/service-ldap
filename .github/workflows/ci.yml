@@ -6,6 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      slapd:
+        image: slapd
+        env:
+          LDAP_DOMAIN: example.com
+          LDAP_ORGANISATION: "Example Corp"
+          LDAP_ROOTPASS: test
+        ports:
+          - 389:3389
+
     strategy:
       matrix:
         node-version: [14.2]
@@ -25,15 +35,9 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
-    - name: Install LDAP
-      run: sudo apt-get install slapd ldap-utils
-
-    - name: Start LDAP server
+    - name: Load LDAP data
       run: |
-        mkdir /tmp/slapd
-        slapd -f tests/fixtures/ldap/slapd.conf -h ldap://localhost:3389 &
-        sleep 3
-        ldapadd -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
+        ldapadd -h localhost:3389 -D cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
       shell: bash
 
     - name: Build / Test Node ${{ matrix.node-version }}
