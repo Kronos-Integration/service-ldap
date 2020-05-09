@@ -8,7 +8,7 @@ jobs:
 
     services:
       slapd:
-        image: slapd
+        image: nickstenning/slapd
         env:
           LDAP_DOMAIN: example.com
           LDAP_ORGANISATION: "Example Corp"
