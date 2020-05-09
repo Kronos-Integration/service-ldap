@@ -25,6 +25,14 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
+    - name: Start LDAP server
+      run: |
+        mkdir /tmp/slapd
+        slapd -f tests/fixtures/ldap/slapd.conf -h ldap://localhost:3389 &
+        sleep 3
+        ldapadd -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
+      shell: bash
+
     - name: Build / Test Node ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
