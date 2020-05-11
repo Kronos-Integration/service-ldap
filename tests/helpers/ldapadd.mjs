@@ -5,6 +5,9 @@ async function importLDIF(file, options) {
   const data = ldif.parseFile(file);
 
   const client = new ldapts.Client(options);
+
+  console.log(options);
+
   await client.bind(options.bindDN, options.password);
 
   while (true) {
@@ -28,7 +31,7 @@ async function importLDIF(file, options) {
 */
 
 const options = {
-  url: `ldaps://${process.argv[3]}`,
+  url: `ldap://${process.argv[3]}`,
   password: process.argv[7],
   bindDN: process.argv[5]
 };
