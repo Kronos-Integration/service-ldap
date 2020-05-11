@@ -32,7 +32,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Load LDAP data
-        run: docker ps
+      - run: npm install
+      - run: node tests/helpers/ldapadd.mjs -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
       - name: 'Build / Test Node ${{ matrix.node-version }}'
         uses: actions/setup-node@v1
         with:
