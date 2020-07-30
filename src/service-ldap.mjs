@@ -6,6 +6,14 @@ import { Service } from "@kronos-integration/service";
  * LDAP
  */
 export class ServiceLDAP extends Service {
+
+  /**
+   * @return {string} 'ldap'
+   */
+  static get name() {
+    return "ldap";
+  }
+
   static get configurationAttributes() {
     return mergeAttributes(
       Service.configurationAttributes,
