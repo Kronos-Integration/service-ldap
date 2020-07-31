@@ -25,6 +25,7 @@ ldap
 -   [ServiceLDAP](#serviceldap)
     -   [authenticate](#authenticate)
         -   [Parameters](#parameters)
+    -   [name](#name)
 
 ## ServiceLDAP
 
@@ -43,6 +44,10 @@ authorize with username and password
     -   `props.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** entitlements
+
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'ldap'
 
 # install
 
