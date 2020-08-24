@@ -33,7 +33,7 @@
     "ldapts": "^2.6.1"
   },
   "devDependencies": {
-    "ava": "^3.11.1",
+    "ava": "^3.12.1",
     "c8": "^7.3.0",
     "documentation": "^13.0.2",
     "ldif": "^0.5.1",
