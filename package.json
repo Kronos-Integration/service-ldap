@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@kronos-integration/service": "^9.2.8",
-    "ldapts": "^2.6.1"
+    "ldapts": "^2.7.0"
   },
   "devDependencies": {
     "ava": "^3.12.1",
