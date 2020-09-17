@@ -37,7 +37,7 @@
     "c8": "^7.3.0",
     "documentation": "^13.0.2",
     "ldif": "^0.5.1",
-    "semantic-release": "^17.1.1"
+    "semantic-release": "^17.1.2"
   },
   "engines": {
     "node": ">=14.11.0"
