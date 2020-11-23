@@ -40,7 +40,7 @@
     "c8": "^7.3.5",
     "documentation": "github:arlac77/documentation",
     "ldif": "^0.5.1",
-    "semantic-release": "^17.2.3"
+    "semantic-release": "^17.3.0"
   },
   "engines": {
     "node": ">=14.15.1"
