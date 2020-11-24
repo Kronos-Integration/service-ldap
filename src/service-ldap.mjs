@@ -66,6 +66,11 @@ export class ServiceLDAP extends Service {
     return super._stop();
   }
 
+  /**
+   * 
+   * @param {Object} query
+   * @return {Object} result
+   */
   async search(query) {
     await this.start();
 
@@ -73,7 +78,8 @@ export class ServiceLDAP extends Service {
       if(query.bindDN) {
         await this.client.bind(query.bindDN, query.password);
       }
-      return await this.client.search(query.base, query);
+      const json = await this.client.search(query.base, query);
+      return json.searchEntries;
     } finally {
       if(this.client) {
         await this.client.unbind();

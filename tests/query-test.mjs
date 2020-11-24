@@ -26,7 +26,7 @@ test("service-ldap search with bind", async t => {
         attributes: ["cn"],
         filter: "(objectclass=groupOfUniqueNames)"
       })
-    ).searchEntries,
+    ),
     [
       { cn: "konsum", dn: "cn=konsum,ou=groups,dc=example,dc=com" },
       { cn: "service1", dn: "cn=service1,ou=groups,dc=example,dc=com" },
@@ -49,7 +49,7 @@ test("service-ldap search without bind", async t => {
         attributes: ["cn"],
         filter: "(objectclass=groupOfUniqueNames)"
       })
-    ).searchEntries,
+    ),
     [
       { cn: "konsum", dn: "cn=konsum,ou=groups,dc=example,dc=com" },
       { cn: "service1", dn: "cn=service1,ou=groups,dc=example,dc=com" },
