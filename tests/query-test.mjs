@@ -10,7 +10,7 @@ const config = {
   bindDN: "ou=accounts,dc=example,dc=com"
 };
 
-test("service-ldap search", async t => {
+test("service-ldap search with bind", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
@@ -21,6 +21,29 @@ test("service-ldap search", async t => {
       await ldap.search({
         bindDN: "uid=user1,ou=accounts,dc=example,dc=com",
         password: "test",
+        base: "ou=groups,dc=example,dc=com",
+        scope: "sub",
+        attributes: ["cn"],
+        filter: "(objectclass=groupOfUniqueNames)"
+      })
+    ).searchEntries,
+    [
+      { cn: "konsum", dn: "cn=konsum,ou=groups,dc=example,dc=com" },
+      { cn: "service1", dn: "cn=service1,ou=groups,dc=example,dc=com" },
+      { cn: "service2", dn: "cn=service2,ou=groups,dc=example,dc=com" }
+    ]
+  );
+});
+
+test("service-ldap search without bind", async t => {
+  const sp = new StandaloneServiceProvider();
+  const ldap = await sp.declareService(config);
+  await ldap.start();
+  t.is(ldap.state, "running");
+
+  t.deepEqual(
+    (
+      await ldap.search({
         base: "ou=groups,dc=example,dc=com",
         scope: "sub",
         attributes: ["cn"],

@@ -70,11 +70,14 @@ export class ServiceLDAP extends Service {
     await this.start();
 
     try {
-      await this.client.bind(query.bindDN, query.password);
+      if(query.bindDN) {
+        await this.client.bind(query.bindDN, query.password);
+      }
       return await this.client.search(query.base, query);
-    //  return entries;
     } finally {
-      await this.client.unbind();
+      if(this.client) {
+        await this.client.unbind();
+      }
     }
   }
 
