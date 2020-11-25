@@ -2,6 +2,8 @@ import ldapts from "ldapts";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
 
+export { LDAPQueryInterceptor } from "./ldap-query-interceptor.mjs";
+
 /**
  * LDAP
  */
@@ -88,7 +90,7 @@ export class ServiceLDAP extends Service {
   }
 
   /**
-   * authorize with username and password
+   * Authorize with username and password.
    * @param {Object} props
    * @param {string} props.username
    * @param {string} props.password
