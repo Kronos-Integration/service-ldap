@@ -19,8 +19,10 @@ ldap
 ### Table of Contents
 
 -   [ServiceLDAP](#serviceldap)
-    -   [authenticate](#authenticate)
+    -   [search](#search)
         -   [Parameters](#parameters)
+    -   [authenticate](#authenticate)
+        -   [Parameters](#parameters-1)
     -   [name](#name)
 
 ## ServiceLDAP
@@ -28,6 +30,14 @@ ldap
 **Extends Service**
 
 LDAP
+
+### search
+
+#### Parameters
+
+-   `query` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** result
 
 ### authenticate
 
