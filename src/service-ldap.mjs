@@ -8,7 +8,6 @@ export { LDAPQueryInterceptor } from "./ldap-query-interceptor.mjs";
  * LDAP
  */
 export class ServiceLDAP extends Service {
-
   /**
    * @return {string} 'ldap'
    */
@@ -58,34 +57,22 @@ export class ServiceLDAP extends Service {
     };
   }
 
-  async _start() {
-    await super.start();
-    this.client = new ldapts.Client({ url: this.url });
-  }
-
-  async _stop() {
-    delete this.client;
-    return super._stop();
-  }
-
   /**
-   * 
+   * Execute a query.
    * @param {Object} query
    * @return {Object} result
    */
   async search(query) {
-    await this.start();
+    const client = new ldapts.Client({ url: this.url });
 
     try {
-      if(query.bindDN) {
-        await this.client.bind(query.bindDN, query.password);
+      if (query.bindDN) {
+        await client.bind(query.bindDN, query.password);
       }
-      const json = await this.client.search(query.base, query);
+      const json = await client.search(query.base, query);
       return json.searchEntries;
     } finally {
-      if(this.client) {
-        await this.client.unbind();
-      }
+      await client.unbind();
     }
   }
 
@@ -99,7 +86,7 @@ export class ServiceLDAP extends Service {
   async authenticate(props) {
     const { username, password } = props;
 
-    await this.start();
+    const client = new ldapts.Client({ url: this.url });
 
     const values = {
       username
@@ -116,7 +103,7 @@ export class ServiceLDAP extends Service {
 
       this.trace(`bind ${bindDN} (${this.entitlements.bindDN})`);
 
-      await this.client.bind(bindDN, password);
+      await client.bind(bindDN, password);
 
       const attribute = expand(this.entitlements.attribute);
 
@@ -130,7 +117,7 @@ export class ServiceLDAP extends Service {
 
       this.trace(`search ${base} ${JSON.stringify(searchOptions)}`);
 
-      const { searchEntries } = await this.client.search(base, searchOptions);
+      const { searchEntries } = await client.search(base, searchOptions);
 
       const entitlements = new Set(searchEntries.map(e => e[attribute]));
 
@@ -138,9 +125,7 @@ export class ServiceLDAP extends Service {
 
       return { username, entitlements };
     } finally {
-      if(this.client) {
-        await this.client.unbind();
-      }
+      await client.unbind();
     }
   }
 }
