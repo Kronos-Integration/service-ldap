@@ -24,6 +24,8 @@ ldap
     -   [authenticate](#authenticate)
         -   [Parameters](#parameters-1)
     -   [name](#name)
+-   [LDAPQueryInterceptor](#ldapqueryinterceptor)
+    -   [name](#name-1)
 
 ## ServiceLDAP
 
@@ -33,6 +35,8 @@ LDAP
 
 ### search
 
+Execute a query.
+
 #### Parameters
 
 -   `query` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
@@ -41,7 +45,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### authenticate
 
-authorize with username and password
+Authorize with username and password.
 
 #### Parameters
 
@@ -54,6 +58,16 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 ### name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'ldap'
+
+## LDAPQueryInterceptor
+
+**Extends Interceptor**
+
+Map params into ldap queries.
+
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'ldap-query'
 
 # install
 
