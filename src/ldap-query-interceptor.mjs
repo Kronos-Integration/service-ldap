@@ -34,12 +34,10 @@ export class LDAPQueryInterceptor extends Interceptor {
         : str;
     }
 
-    const query = Object.fromEntries(
-      Object.entries(this.query).map(([k, v]) => [k, expand(v)])
+    return next(
+      Object.fromEntries(
+        Object.entries(this.query).map(([k, v]) => [k, expand(v)])
+      )
     );
-
-    console.log("ldap-query", query, params);
-
-    return next(query);
   }
 }
