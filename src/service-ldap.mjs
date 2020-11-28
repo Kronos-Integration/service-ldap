@@ -79,7 +79,7 @@ export class ServiceLDAP extends Service {
     let client;
 
     try {
-      client = await prepareRequest(request);
+      client = await this.prepareRequest(request);
       return client.add(request.dn, request);
     } finally {
       if (client) {
@@ -92,7 +92,7 @@ export class ServiceLDAP extends Service {
     let client;
 
     try {
-      client = await prepareRequest(request);
+      client = await this.prepareRequest(request);
       return client.del(request.dn, request);
     } finally {
       if (client) {
@@ -135,7 +135,7 @@ export class ServiceLDAP extends Service {
     let client;
 
     try {
-      client = await prepareRequest(request);
+      client = await this.prepareRequest(request);
       const json = await client.search(request.base, request);
       return json.searchEntries;
     } finally {
