@@ -16,11 +16,11 @@ test(
   interceptorTest,
   LDAPQueryInterceptor,
   undefined,
-  { json: { query: {} } },
+  { json: { type: "ldap-query", query: {} } },
   dummyEndpoint("e1"),
   [],
-  () => 77,
-  async (t, interceptor, endpoint, next, result) => {
+  (query) => 77,
+  async (t, interceptor, endpoint, next, result, params) => {
     t.is(result, 77);
   }
 );
@@ -28,11 +28,11 @@ test(
 test(
   interceptorTest,
   LDAPQueryInterceptor,
-  { query: {} },
+  { type: "ldap-query", query: {} },
   { json: { query: { }} },
   dummyEndpoint("e1"),
   [{ user : "hugo"}],
-  () => 77,
+  (query) => 77,
   async (t, interceptor, endpoint, next, result, params) => {
     t.is(result, 77);
   }
