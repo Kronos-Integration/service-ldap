@@ -54,6 +54,9 @@ export class ServiceLDAP extends Service {
       add: {
         receive: "add"
       },
+      del: {
+        receive: "del"
+      },
       modify: {
         receive: "modify"
       },
@@ -64,6 +67,19 @@ export class ServiceLDAP extends Service {
   }
 
   async add(query) {
+    const client = new ldapts.Client({ url: this.url });
+
+    try {
+      if (query.bindDN) {
+        await client.bind(query.bindDN, query.password);
+      }
+      throw new Error("Not implemented");
+    } finally {
+      await client.unbind();
+    }
+  }
+
+ async del(query) {
     const client = new ldapts.Client({ url: this.url });
 
     try {
