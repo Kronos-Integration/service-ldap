@@ -168,15 +168,15 @@ export class ServiceLDAP extends Service {
 
       await client.bind(bindDN, password);
 
-      const attribute = expand(this.entitlements.attribute);
+      const attribute = expand(this.entitlements.attribute, values);
 
       const searchOptions = {
         scope: this.entitlements.scope,
-        filter: expand(this.entitlements.filter),
+        filter: expand(this.entitlements.filter, values),
         attributes: [attribute]
       };
 
-      const base = expand(this.entitlements.base);
+      const base = expand(this.entitlements.base, values);
 
       this.trace(`search ${base} ${JSON.stringify(searchOptions)}`);
 
