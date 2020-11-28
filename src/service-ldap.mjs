@@ -82,7 +82,9 @@ export class ServiceLDAP extends Service {
       client = await prepareRequest(request);
       return client.add(request.dn, request);
     } finally {
-      await client.unbind();
+      if (client) {
+        await client.unbind();
+      }
     }
   }
 
@@ -93,7 +95,9 @@ export class ServiceLDAP extends Service {
       client = await prepareRequest(request);
       return client.del(request.dn, request);
     } finally {
-      await client.unbind();
+      if (client) {
+        await client.unbind();
+      }
     }
   }
 
@@ -116,7 +120,9 @@ export class ServiceLDAP extends Service {
         )
       );
     } finally {
-      await client.unbind();
+      if (client) {
+        await client.unbind();
+      }
     }
   }
 
@@ -133,7 +139,9 @@ export class ServiceLDAP extends Service {
       const json = await client.search(request.base, request);
       return json.searchEntries;
     } finally {
-      await client.unbind();
+      if (client) {
+        await client.unbind();
+      }
     }
   }
 
