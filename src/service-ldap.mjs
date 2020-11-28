@@ -51,8 +51,11 @@ export class ServiceLDAP extends Service {
       authenticate: {
         receive: "authenticate"
       },
-      change_password: {
-        receive: "changePassword"
+      add: {
+        receive: "add"
+      },
+      modify: {
+        receive: "modify"
       },
       search: {
         receive: "search"
@@ -60,7 +63,20 @@ export class ServiceLDAP extends Service {
     };
   }
 
-  async changePassword(query) {
+  async add(query) {
+    const client = new ldapts.Client({ url: this.url });
+
+    try {
+      if (query.bindDN) {
+        await client.bind(query.bindDN, query.password);
+      }
+      throw new Error("Not implemented");
+    } finally {
+      await client.unbind();
+    }
+  }
+
+  async modify(query) {
     const client = new ldapts.Client({ url: this.url });
 
     try {
