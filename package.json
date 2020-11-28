@@ -36,6 +36,7 @@
     "model-attributes": "^4.1.7"
   },
   "devDependencies": {
+    "@kronos-integration/test-interceptor": "^7.0.7",
     "ava": "^3.13.0",
     "c8": "^7.3.5",
     "documentation": "github:arlac77/documentation",

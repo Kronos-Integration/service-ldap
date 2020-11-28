@@ -1,4 +1,9 @@
 import test from "ava";
+import {
+  interceptorTest,
+  dummyEndpoint
+} from "@kronos-integration/test-interceptor";
+
 import { SendEndpoint } from "@kronos-integration/endpoint";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import {
@@ -6,17 +11,39 @@ import {
   LDAPQueryInterceptor
 } from "@kronos-integration/service-ldap";
 
-test("defaults", async t => {
-  const interceptor = new LDAPQueryInterceptor();
-  t.deepEqual(interceptor.query, {});
-});
+
+test(
+  interceptorTest,
+  LDAPQueryInterceptor,
+  undefined,
+  { json: { query: {} } },
+  dummyEndpoint("e1"),
+  [],
+  () => 77,
+  async (t, interceptor, endpoint, next, result) => {
+    t.is(result, 77);
+  }
+);
+
+test(
+  interceptorTest,
+  LDAPQueryInterceptor,
+  { query: {} },
+  { json: { query: { }} },
+  dummyEndpoint("e1"),
+  [{ user : "hugo"}],
+  () => 77,
+  async (t, interceptor, endpoint, next, result, params) => {
+    t.is(result, 77);
+  }
+);
 
 test("query params", async t => {
   const sp = new StandaloneServiceProvider();
-  const http = await sp.declareService({
+  const ldap = await sp.declareService({
     type: ServiceLDAP
   });
-  const endpoint = new SendEndpoint("e", http);
+  const endpoint = new SendEndpoint("e", ldap);
 
   const configureadQuery = {};
 
