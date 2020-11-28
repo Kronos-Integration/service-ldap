@@ -68,8 +68,8 @@ export class ServiceLDAP extends Service {
 
   async prepareRequest(request) {
     const client = new ldapts.Client({ url: this.url });
-    if (request.bindDN) {
-      await client.bind(request.bindDN, request.password);
+    if (request.bind) {
+      await client.bind(request.bind.dn, request.bind.password);
     }
 
     return client;
