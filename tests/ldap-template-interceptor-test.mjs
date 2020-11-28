@@ -3,14 +3,13 @@ import {
   interceptorTest,
   dummyEndpoint
 } from "@kronos-integration/test-interceptor";
-
-import { LDAPQueryInterceptor } from "@kronos-integration/service-ldap";
+import { LDAPTemplateInterceptor } from "@kronos-integration/service-ldap";
 
 test(
   interceptorTest,
-  LDAPQueryInterceptor,
+  LDAPTemplateInterceptor,
   undefined,
-  { json: { type: "ldap-query", query: {} } },
+  { json: { type: "ldap-template", template: {} } },
   dummyEndpoint("e1"),
   [],
   query => 77,
@@ -21,9 +20,9 @@ test(
 
 test(
   interceptorTest,
-  LDAPQueryInterceptor,
+  LDAPTemplateInterceptor,
   {
-    query: {
+    template: {
       base: "ou=groups,dc=example,dc=de",
       scope: "sub",
       attributes: ["cn"],
@@ -33,8 +32,8 @@ test(
   },
   {
     json: {
-      type: "ldap-query",
-      query: {
+      type: "ldap-template",
+      template: {
         base: "ou=groups,dc=example,dc=de",
         scope: "sub",
         attributes: ["cn"],

@@ -1,8 +1,8 @@
 import ldapts from "ldapts";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
-
-export { LDAPQueryInterceptor } from "./ldap-query-interceptor.mjs";
+export { LDAPTemplateInterceptor } from "./ldap-template-interceptor.mjs";
+import { expand } from "./util.mjs";
 
 /**
  * LDAP
@@ -66,40 +66,55 @@ export class ServiceLDAP extends Service {
     };
   }
 
-  async add(query) {
+  async prepareRequest(request) {
     const client = new ldapts.Client({ url: this.url });
+    if (request.bindDN) {
+      await client.bind(request.bindDN, request.password);
+    }
+
+    return client;
+  }
+
+  async add(request) {
+    let client;
 
     try {
-      if (query.bindDN) {
-        await client.bind(query.bindDN, query.password);
-      }
-      throw new Error("Not implemented");
+      client = await prepareRequest(request);
+      return client.add(request.dn, request);
     } finally {
       await client.unbind();
     }
   }
 
- async del(query) {
-    const client = new ldapts.Client({ url: this.url });
+  async del(request) {
+    let client;
 
     try {
-      if (query.bindDN) {
-        await client.bind(query.bindDN, query.password);
-      }
-      throw new Error("Not implemented");
+      client = await prepareRequest(request);
+      return client.del(request.dn, request);
     } finally {
       await client.unbind();
     }
   }
 
-  async modify(query) {
-    const client = new ldapts.Client({ url: this.url });
+  async modify(request) {
+    let client;
 
     try {
-      if (query.bindDN) {
-        await client.bind(query.bindDN, query.password);
-      }
-      throw new Error("Not implemented");
+      client = await prepareRequest(request);
+      return client.modify(
+        request.dn,
+        request.changes.map(
+          change =>
+            new ldapts.Change({
+              operation: change.operation,
+              modification: new ldapts.Attribute({
+                type: "title",
+                values: change.values
+              })
+            })
+        )
+      );
     } finally {
       await client.unbind();
     }
@@ -107,17 +122,15 @@ export class ServiceLDAP extends Service {
 
   /**
    * Execute a query.
-   * @param {Object} query
+   * @param {Object} request
    * @return {Object} result
    */
-  async search(query) {
-    const client = new ldapts.Client({ url: this.url });
+  async search(request) {
+    let client;
 
     try {
-      if (query.bindDN) {
-        await client.bind(query.bindDN, query.password);
-      }
-      const json = await client.search(query.base, query);
+      client = await prepareRequest(request);
+      const json = await client.search(request.base, request);
       return json.searchEntries;
     } finally {
       await client.unbind();
@@ -140,14 +153,8 @@ export class ServiceLDAP extends Service {
       username
     };
 
-    function expand(str) {
-      return str.replace(/\{\{(\w+)\}\}/, (match, g1) =>
-        values[g1] ? values[g1] : g1
-      );
-    }
-
     try {
-      const bindDN = expand(this.entitlements.bindDN);
+      const bindDN = expand(this.entitlements.bindDN, values);
 
       this.trace(`bind ${bindDN} (${this.entitlements.bindDN})`);
 

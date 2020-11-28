@@ -1,22 +1,23 @@
 import { Interceptor } from "@kronos-integration/interceptor";
 import { mergeAttributes, createAttributes } from "model-attributes";
+import { expand } from "./util.mjs";
 
 /**
- * Map params into ldap queries.
+ * Map params into ldap requests.
  */
-export class LDAPQueryInterceptor extends Interceptor {
+export class LDAPTemplateInterceptor extends Interceptor {
   /**
-   * @return {string} 'ldap-query'
+   * @return {string} 'ldap-template'
    */
   static get name() {
-    return "ldap-query";
+    return "ldap-template";
   }
 
   static get configurationAttributes() {
     return mergeAttributes(
       createAttributes({
-        query: {
-          description: "query template",
+        template: {
+          description: "request template",
           default: {},
           type: "object"
         }
@@ -26,17 +27,9 @@ export class LDAPQueryInterceptor extends Interceptor {
   }
 
   async receive(endpoint, next, params) {
-    function expand(str) {
-      return typeof str === "string"
-        ? str.replace(/\{\{(\w+)\}\}/, (match, g1) =>
-            params[g1] ? params[g1] : g1
-          )
-        : str;
-    }
-
     return next(
       Object.fromEntries(
-        Object.entries(this.query).map(([k, v]) => [k, expand(v)])
+        Object.entries(this.template).map(([k, v]) => [k, expand(v, params)])
       )
     );
   }
