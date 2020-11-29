@@ -1,5 +1,8 @@
 #!/bin/bash
 
+PORT=3389
+SECRET=test
+
 mkdir -p /tmp/slapd
 
 case $(uname) in
@@ -16,6 +19,6 @@ case $(uname) in
     ;;
 esac
 
-
-${SLAPD} -f ${SLAPD_CONF} -h ldap://localhost:3389 -d 1 &
-ldapadd -h localhost:3389 -D cn=Manager,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
+${SLAPD} -f ${SLAPD_CONF} -h ldap://localhost:${PORT} -d 1 &
+ldapadd -h localhost:${PORT} -D cn=Manager,dc=example,dc=com -w ${SECRET} -f tests/fixtures/ldap/base.ldif
+ 
