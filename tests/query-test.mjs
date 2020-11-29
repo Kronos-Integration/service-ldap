@@ -61,7 +61,7 @@ test("service-ldap add", async t => {
 
   t.deepEqual(
     await ldap.add({
-      bind: { dn: "cn=Manager,dc=example,dc=com", password: "test" },
+      bind: { dn: "uid=user1,ou=accounts,dc=example,dc=com", password: "test" },
       dn: "cn=service3,ou=groups,dc=example,dc=com",
       cn: "service3",
       objectclass: "groupOfUniqueNames",
