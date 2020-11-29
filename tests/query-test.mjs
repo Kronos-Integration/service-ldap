@@ -53,7 +53,7 @@ test("service-ldap search without bind", async t => {
   );
 });
 
-test("service-ldap add", async t => {
+test.skip("service-ldap add", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
