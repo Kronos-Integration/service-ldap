@@ -77,7 +77,7 @@ export class ServiceLDAP extends Service {
 
     try {
       client = await this.prepareRequest(request);
-      return client.add(request.dn, request);
+      await client.add(request.dn, request.entry);
     } finally {
       if (client) {
         await client.unbind();
@@ -90,7 +90,7 @@ export class ServiceLDAP extends Service {
 
     try {
       client = await this.prepareRequest(request);
-      return client.del(request.dn, request);
+      await client.del(request.dn);
     } finally {
       if (client) {
         await client.unbind();
