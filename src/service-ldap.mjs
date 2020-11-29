@@ -24,9 +24,6 @@ export class ServiceLDAP extends Service {
           mandatory: true,
           type: "url"
         },
-        bindDN: {
-          type: "string"
-        },
         entitlements: {
           description: "attributes to build a entitlement query",
           attributes: {
