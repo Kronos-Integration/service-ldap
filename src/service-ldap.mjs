@@ -105,7 +105,7 @@ export class ServiceLDAP extends Service {
     let client;
 
     try {
-      client = await prepareRequest(request);
+      client = await this.prepareRequest(request);
       return client.modify(
         request.dn,
         request.changes.map(
