@@ -52,7 +52,7 @@ test.serial("service-ldap search without bind", async t => {
   );
 });
 
-test.serial("service-ldap add / delete", async t => {
+test.skip("service-ldap add / delete", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
