@@ -25,7 +25,7 @@ test(
     template: {
       base: "ou=groups,dc=example,dc=de",
       scope: "sub",
-      attributes: ["cn"],
+      attributes: ["{{cn}}"],
       filter:
         "(&(objectclass=groupOfUniqueNames)(uniqueMember=uid={{user}},ou=accounts,dc=example,dc=de))"
     }
@@ -36,20 +36,20 @@ test(
       template: {
         base: "ou=groups,dc=example,dc=de",
         scope: "sub",
-        attributes: ["cn"],
+        attributes: ["{{cn}}"],
         filter:
           "(&(objectclass=groupOfUniqueNames)(uniqueMember=uid={{user}},ou=accounts,dc=example,dc=de))"
       }
     }
   },
   dummyEndpoint("e1"),
-  [{ user: "hugo" }],
+  [{ user: "hugo", cn: "cn1" }],
   query => query,
   async (t, interceptor, endpoint, next, result, params) => {
     t.deepEqual(result, {
       base: "ou=groups,dc=example,dc=de",
       scope: "sub",
-      attributes: ["cn"],
+      attributes: ["cn1"],
       filter:
         "(&(objectclass=groupOfUniqueNames)(uniqueMember=uid=hugo,ou=accounts,dc=example,dc=de))"
     });

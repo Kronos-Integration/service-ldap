@@ -27,10 +27,6 @@ export class LDAPTemplateInterceptor extends Interceptor {
   }
 
   async receive(endpoint, next, params) {
-    return next(
-      Object.fromEntries(
-        Object.entries(this.template).map(([k, v]) => [k, expand(v, params)])
-      )
-    );
+    return next(expand(this.template, params));
   }
 }
