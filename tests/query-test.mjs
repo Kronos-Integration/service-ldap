@@ -9,7 +9,7 @@ const config = {
   url: `ldap://localhost:${PORT}`
 };
 
-test("service-ldap search with bind", async t => {
+test.serial("service-ldap search with bind", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
@@ -31,7 +31,7 @@ test("service-ldap search with bind", async t => {
   );
 });
 
-test("service-ldap search without bind", async t => {
+test.serial("service-ldap search without bind", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
@@ -52,7 +52,7 @@ test("service-ldap search without bind", async t => {
   );
 });
 
-test.only("service-ldap add / delete ", async t => {
+test.serial("service-ldap add / delete", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
   await ldap.start();
@@ -84,6 +84,17 @@ test.only("service-ldap add / delete ", async t => {
     }),
     undefined
   );
+
+  /*t.is(
+    await ldap.modify({
+      bind,
+      dn,
+      replace : {
+        uniqueMember: "uid=user2,ou=accounts,dc=example,dc=com"
+      }
+    }),
+    undefined
+  );*/
 
   t.is(
     await ldap.del({

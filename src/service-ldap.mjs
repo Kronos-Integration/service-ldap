@@ -103,19 +103,17 @@ export class ServiceLDAP extends Service {
 
     try {
       client = await this.prepareRequest(request);
-      return client.modify(
-        request.dn,
-        request.changes.map(
-          change =>
-            new ldapts.Change({
-              operation: change.operation,
-              modification: new ldapts.Attribute({
-                type: "title",
-                values: change.values
-              })
-            })
-        )
+
+      const changes = Object.entries(request.replace).map(
+        ([type, values]) =>
+          new ldapts.Change({
+            operation: "replace",
+            modification: new ldapts.Attribute({ type, values: asArray(values) })
+          })
       );
+
+      console.log(request.dn, changes);
+      await client.modify(request.dn, changes);
     } finally {
       if (client) {
         await client.unbind();
@@ -188,6 +186,9 @@ export class ServiceLDAP extends Service {
       await client.unbind();
     }
   }
+}
+ function asArray(value) {
+  return Array.isArray(value) ? value : value === undefined ? [] : [value];
 }
 
 export default ServiceLDAP;
