@@ -23,8 +23,6 @@ ldap
     -   [authenticate](#authenticate)
         -   [Parameters](#parameters-1)
     -   [name](#name)
--   [LDAPTemplateInterceptor](#ldaptemplateinterceptor)
-    -   [name](#name-1)
 
 ## ServiceLDAP
 
@@ -57,16 +55,6 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 ### name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'ldap'
-
-## LDAPTemplateInterceptor
-
-**Extends Interceptor**
-
-Map params into ldap requests.
-
-### name
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'ldap-template'
 
 # install
 
