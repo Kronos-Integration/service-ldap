@@ -1,7 +1,6 @@
 import ldapts from "ldapts";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
-export { LDAPTemplateInterceptor } from "./ldap-template-interceptor.mjs";
 import { expand } from "./util.mjs";
 
 /**
@@ -13,6 +12,10 @@ export class ServiceLDAP extends Service {
    */
   static get name() {
     return "ldap";
+  }
+
+  static get description() {
+    return "LDAP server access for bind/add/modify/del/query";
   }
 
   static get configurationAttributes() {
