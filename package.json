@@ -5,8 +5,6 @@
     "access": "public"
   },
   "sideEffects": false,
-  "type": "module",
-  "main": "./src/service-ldap.mjs",
   "exports": {
     ".": "./src/service-ldap.mjs"
   },
