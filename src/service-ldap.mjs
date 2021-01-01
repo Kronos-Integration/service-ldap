@@ -20,7 +20,6 @@ export class ServiceLDAP extends Service {
 
   static get configurationAttributes() {
     return mergeAttributes(
-      Service.configurationAttributes,
       createAttributes({
         url: {
           needsRestart: true,
@@ -41,7 +40,8 @@ export class ServiceLDAP extends Service {
             filter: { type: "string" }
           }
         }
-      })
+      }),
+      Service.configurationAttributes
     );
   }
 
@@ -111,7 +111,10 @@ export class ServiceLDAP extends Service {
         ([type, values]) =>
           new ldapts.Change({
             operation: "replace",
-            modification: new ldapts.Attribute({ type, values: asArray(values) })
+            modification: new ldapts.Attribute({
+              type,
+              values: asArray(values)
+            })
           })
       );
 
@@ -190,7 +193,7 @@ export class ServiceLDAP extends Service {
     }
   }
 }
- function asArray(value) {
+function asArray(value) {
   return Array.isArray(value) ? value : value === undefined ? [] : [value];
 }
 
