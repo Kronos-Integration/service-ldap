@@ -3,7 +3,7 @@
 [![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-ldap)](https://bundlephobia.com/result?p=@kronos-integration/service-ldap)
 [![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-ldap.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-ldap)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-ldap.svg?style=flat-square)](https://github.com/Kronos-Integration/service-ldap/issues)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-ldap%2Fbadge&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-ldap/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-ldap%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-ldap/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-ldap/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-ldap)
@@ -21,12 +21,12 @@ ldap
 
 ### Table of Contents
 
--   [ServiceLDAP](#serviceldap)
-    -   [search](#search)
-        -   [Parameters](#parameters)
-    -   [authenticate](#authenticate)
-        -   [Parameters](#parameters-1)
-    -   [name](#name)
+*   [ServiceLDAP](#serviceldap)
+    *   [search](#search)
+        *   [Parameters](#parameters)
+    *   [authenticate](#authenticate)
+        *   [Parameters](#parameters-1)
+    *   [name](#name)
 
 ## ServiceLDAP
 
@@ -40,7 +40,7 @@ Execute a query.
 
 #### Parameters
 
--   `request` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+*   `request` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** result
 
@@ -50,11 +50,12 @@ Authorize with username and password.
 
 #### Parameters
 
--   `props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `props.username` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-    -   `props.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** entitlements
+    *   `props.username` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    *   `props.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** entitlements
 
 ### name
 
