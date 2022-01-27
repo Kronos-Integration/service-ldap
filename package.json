@@ -29,12 +29,12 @@
     "lint:docs": "documentation lint ./src/**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^10.4.14",
+    "@kronos-integration/service": "^10.4.15",
     "ldapts": "^3.2.1",
     "model-attributes": "^4.1.12"
   },
   "devDependencies": {
-    "@kronos-integration/test-interceptor": "^7.0.16",
+    "@kronos-integration/test-interceptor": "^7.0.19",
     "ava": "^4.0.1",
     "c8": "^7.11.0",
     "documentation": "^13.2.5",
