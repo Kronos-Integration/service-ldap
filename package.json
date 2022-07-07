@@ -29,7 +29,7 @@
     "lint:docs": "documentation lint ./src/**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^10.4.25",
+    "@kronos-integration/service": "^10.4.26",
     "ldapts": "^4.1.0",
     "model-attributes": "^4.1.18"
   },
