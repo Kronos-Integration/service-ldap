@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/@kronos-integration/service-ldap.svg)](https://www.npmjs.com/package/@kronos-integration/service-ldap)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-ldap)](https://bundlephobia.com/result?p=@kronos-integration/service-ldap)
+[![Open Bundle](https://bundlejs.com/badge-light.svg)](https://bundlejs.com/?q=@kronos-integration/service-ldap)
 [![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-ldap.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-ldap)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-ldap.svg?style=flat-square)](https://github.com/Kronos-Integration/service-ldap/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-ldap%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-ldap/goto)
