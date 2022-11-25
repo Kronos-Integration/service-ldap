@@ -31,7 +31,7 @@
   "dependencies": {
     "@kronos-integration/service": "^10.4.34",
     "ldapts": "^4.2.1",
-    "model-attributes": "^4.2.0"
+    "model-attributes": "^4.2.1"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.0.26",
