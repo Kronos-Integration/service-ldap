@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kronos-Integration/service-ldap.git"
+    "url": "https://github.com/Kronos-Integration/service-ldap"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/service-ldap/issues"
