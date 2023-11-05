@@ -7,8 +7,9 @@ mkdir -p /tmp/slapd
 
 case $(uname) in
     "Darwin" )
-        export PATH="/usr/local/opt/openldap/bin:/usr/local/opt/openldap/sbin:$PATH"
-        SLAPD=/usr/local/opt/openldap/libexec/slapd
+    /opt/homebrew/opt/openldap/bin
+        export PATH="/opt/homebrew/opt/openldap/bin:/opt/homebrew/opt/openldap/sbin:$PATH"
+        SLAPD=/opt/homebrew/opt/openldap/libexec/slapd
         SLAPD_CONF=/tmp/slapd/slapd.conf
         sed 's/\/etc\/ldap\//\/usr\/local\/etc\/openldap\//' tests/fixtures/ldap/slapd.conf > ${SLAPD_CONF}
     ;;
