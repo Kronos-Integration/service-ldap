@@ -7,7 +7,6 @@ mkdir -p /tmp/slapd
 
 case $(uname) in
     "Darwin" )
-    /opt/homebrew/opt/openldap/bin
         export PATH="/opt/homebrew/opt/openldap/bin:/opt/homebrew/opt/openldap/sbin:$PATH"
         SLAPD=/opt/homebrew/opt/openldap/libexec/slapd
         SLAPD_CONF=/tmp/slapd/slapd.conf

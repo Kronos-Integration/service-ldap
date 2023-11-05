@@ -1,4 +1,4 @@
-import ldapts from "ldapts";
+import { Client, Change, Attribute } from "ldapts";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
 import { expand } from "./util.mjs";
@@ -67,7 +67,7 @@ export class ServiceLDAP extends Service {
   }
 
   async prepareRequest(request) {
-    const client = new ldapts.Client({ url: this.url });
+    const client = new Client({ url: this.url });
     if (request.bind) {
       await client.bind(request.bind.dn, request.bind.password);
     }
@@ -109,9 +109,9 @@ export class ServiceLDAP extends Service {
 
       const changes = Object.entries(request.replace).map(
         ([type, values]) =>
-          new ldapts.Change({
+          new Change({
             operation: "replace",
-            modification: new ldapts.Attribute({
+            modification: new Attribute({
               type,
               values: asArray(values)
             })
@@ -156,7 +156,7 @@ export class ServiceLDAP extends Service {
   async authenticate(props) {
     const { username, password } = props;
 
-    const client = new ldapts.Client({ url: this.url });
+    const client = new Client({ url: this.url });
 
     const values = {
       username
