@@ -13,15 +13,6 @@ permissions:
 jobs:
   test-node:
     runs-on: ubuntu-latest
-    services:
-      slapd:
-        image: nickstenning/slapd
-        env:
-          LDAP_DOMAIN: example.com
-          LDAP_ORGANISATION: Example Corp
-          LDAP_ROOTPASS: test
-        ports:
-          - 389:389
     strategy:
       matrix:
         node-version:
@@ -45,6 +36,15 @@ jobs:
           path-to-lcov: build/coverage/lcov.info
           parallel: true
         continue-on-error: true
+    services:
+      slapd:
+        image: nickstenning/slapd
+        env:
+          LDAP_DOMAIN: example.com
+          LDAP_ORGANISATION: Example Corp
+          LDAP_ROOTPASS: test
+        ports:
+          - 389:389
   release:
     needs:
       - test-node
