@@ -13,6 +13,10 @@ permissions:
 jobs:
   test-node:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 20.11.1
     services:
       slapd:
         image: nickstenning/slapd
@@ -22,10 +26,6 @@ jobs:
           LDAP_ROOTPASS: test
         ports:
           - 389:389
-    strategy:
-      matrix:
-        node-version:
-          - 20.11.1
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: actions/setup-node@v4.0.2
