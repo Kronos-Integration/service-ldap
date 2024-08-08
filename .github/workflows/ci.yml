@@ -33,7 +33,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
           cache-dependency-path: package-lock.json
-      - run: npm ci
       - run: node tests/helpers/ldapadd.mjs -h localhost:389 -D
           cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
       - run: npm run cover --if-present
@@ -63,7 +62,6 @@ jobs:
           cache-dependency-path: package-lock.json
       - name: checkout
         run: npm ci
-      - run: npm ci
       - run: npx semantic-release
         env:
           CI: "true"
