@@ -37,7 +37,8 @@ jobs:
           cache-dependency-path: package-lock.json
       - run: node tests/helpers/ldapadd.mjs -h localhost:389 -D
           cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
-      - run: npm run cover --if-present
+      - name: test and coverage
+        run: npm run cover --if-present
       - name: coveralls
         uses: coverallsapp/github-action@v2
         with:
