@@ -35,7 +35,7 @@
     "model-attributes": "^4.2.2"
   },
   "devDependencies": {
-    "@kronos-integration/test-interceptor": "^7.0.28",
+    "@kronos-integration/test-interceptor": "^7.0.29",
     "ava": "^6.1.3",
     "c8": "^10.1.2",
     "documentation": "^14.0.3",
