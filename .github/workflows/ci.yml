@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 22.12.0
+          - 22.13.0
     services:
       slapd:
         image: nickstenning/slapd
@@ -64,7 +64,7 @@ jobs:
       - name: prepare node
         uses: actions/setup-node@v4.1.0
         with:
-          node-version: 22.12.0
+          node-version: 22.13.0
           cache: npm
           cache-dependency-path: package-lock.json
       - name: install
