@@ -32,7 +32,7 @@
     "@kronos-integration/endpoint": "^9.5.6",
     "@kronos-integration/service": "^11.2.5",
     "ldapts": "^7.4.0",
-    "model-attributes": "^4.2.2"
+    "model-attributes": "^4.2.4"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.0.29",
