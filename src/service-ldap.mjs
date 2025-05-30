@@ -130,7 +130,7 @@ export class ServiceLDAP extends Service {
   /**
    * Execute a query.
    * @param {Object} request
-   * @return {Object} result
+   * @return {Promise<Object>} result
    */
   async search(request) {
     let client;
@@ -151,7 +151,7 @@ export class ServiceLDAP extends Service {
    * @param {Object} props
    * @param {string} props.username
    * @param {string} props.password
-   * @return {Set<string>} entitlements
+   * @return {Promise<Set<string>>} entitlements
    */
   async authenticate(props) {
     const { username, password } = props;
@@ -193,6 +193,7 @@ export class ServiceLDAP extends Service {
     }
   }
 }
+
 function asArray(value) {
   return Array.isArray(value) ? value : value === undefined ? [] : [value];
 }
