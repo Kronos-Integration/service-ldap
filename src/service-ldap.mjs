@@ -1,5 +1,5 @@
 import { Client, Change, Attribute } from "ldapts";
-import { mergeAttributes, createAttributes } from "model-attributes";
+import { prepareAttributesDefinitions, mergeAttributeDefinitions } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { expand } from "./util.mjs";
 
@@ -19,8 +19,8 @@ export class ServiceLDAP extends Service {
   }
 
   static get configurationAttributes() {
-    return mergeAttributes(
-      createAttributes({
+    return mergeAttributeDefinitions(
+      prepareAttributesDefinitions({
         url: {
           needsRestart: true,
           mandatory: true,
