@@ -1,5 +1,10 @@
 import { Client, Change, Attribute } from "ldapts";
-import { prepareAttributesDefinitions, mergeAttributeDefinitions } from "pacc";
+import {
+  prepareAttributesDefinitions,
+  mergeAttributeDefinitions,
+  url_attribute,
+  default_attribute
+} from "pacc";
 import { Service } from "@kronos-integration/service";
 import { expand } from "./util.mjs";
 
@@ -18,32 +23,26 @@ export class ServiceLDAP extends Service {
     return "LDAP server access for bind/add/modify/del/query";
   }
 
-  static get configurationAttributes() {
-    return mergeAttributeDefinitions(
-      prepareAttributesDefinitions({
-        url: {
-          needsRestart: true,
-          mandatory: true,
-          type: "url"
-        },
-        entitlements: {
-          description: "attributes to build a entitlement query",
-          attributes: {
-            bindDN: {
-              type: "string"
-            },
-            base: {
-              type: "string"
-            },
-            attribute: { default: "cn", type: "string" },
-            scope: { default: "sub", type: "string" },
-            filter: { type: "string" }
-          }
+  static attributes = mergeAttributeDefinitions(
+    prepareAttributesDefinitions({
+      url: {
+        ...url_attribute,
+        needsRestart: true,
+        mandatory: true
+      },
+      entitlements: {
+        description: "attributes to build a entitlement query",
+        attributes: {
+          bindDN: default_attribute,
+          base: default_attribute,
+          attribute: { ...default_attribute, default: "cn" },
+          scope: { ...default_attribute, default: "sub" },
+          filter: default_attribute
         }
-      }),
-      Service.configurationAttributes
-    );
-  }
+      }
+    }),
+    Service.attributes
+  );
 
   static get endpoints() {
     return {
