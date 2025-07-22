@@ -1,7 +1,6 @@
 import { Client, Change, Attribute } from "ldapts";
 import {
   prepareAttributesDefinitions,
-  mergeAttributeDefinitions,
   url_attribute,
   default_attribute
 } from "pacc";
@@ -23,8 +22,8 @@ export class ServiceLDAP extends Service {
     return "LDAP server access for bind/add/modify/del/query";
   }
 
-  static attributes = mergeAttributeDefinitions(
-    prepareAttributesDefinitions({
+  static attributes = prepareAttributesDefinitions(
+    {
       url: {
         ...url_attribute,
         needsRestart: true,
@@ -40,7 +39,7 @@ export class ServiceLDAP extends Service {
           filter: default_attribute
         }
       }
-    }),
+    },
     Service.attributes
   );
 
