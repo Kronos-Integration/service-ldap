@@ -17,7 +17,7 @@ jobs:
       matrix:
         node-version:
           - 22.18.0
-          - 24.4.1
+          - 24.5.0
     services:
       slapd:
         image: nickstenning/slapd
