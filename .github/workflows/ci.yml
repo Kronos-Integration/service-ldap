@@ -30,6 +30,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6.0.1
+      - name: prepare ldap
+        run: node tests/helpers/ldapadd.mjs -h localhost:389 -D
+          cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
       - name: prepare node
         uses: actions/setup-node@v6.1.0
         with:
@@ -46,8 +49,6 @@ jobs:
           path-to-lcov: build/coverage/lcov.info
           parallel: true
         continue-on-error: true
-      - run: node tests/helpers/ldapadd.mjs -h localhost:389 -D
-          cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
   release:
     needs:
       - test-node
