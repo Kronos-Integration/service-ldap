@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@kronos-integration/endpoint": "^11.0.7",
-    "@kronos-integration/service": "^15.2.3",
-    "ldapts": "^8.0.20",
+    "@kronos-integration/service": "^15.2.4",
+    "ldapts": "^8.0.24",
     "pacc": "^6.5.0"
   },
   "devDependencies": {
