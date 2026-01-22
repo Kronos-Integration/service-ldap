@@ -29,7 +29,7 @@ jobs:
           - 389:389
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
       - name: prepare ldap
         run: node tests/helpers/ldapadd.mjs -h localhost:389 -D
           cn=admin,dc=example,dc=com -w test -f tests/fixtures/ldap/base.ldif
@@ -60,7 +60,7 @@ jobs:
       id-token: write
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
       - name: prepare node
         uses: actions/setup-node@v6.2.0
         with:
