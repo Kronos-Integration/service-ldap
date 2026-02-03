@@ -10,7 +10,7 @@ case $(uname) in
         export PATH="/opt/homebrew/opt/openldap/bin:/opt/homebrew/opt/openldap/sbin:$PATH"
         SLAPD=/opt/homebrew/opt/openldap/libexec/slapd
         SLAPD_CONF=/tmp/slapd/slapd.conf
-        sed 's/\/etc\/ldap\//\/usr\/local\/etc\/openldap\//' tests/fixtures/ldap/slapd.conf > ${SLAPD_CONF}
+        sed 's/\/etc\/ldap\//\/opt\/homebrew\/Cellar\/openldap\/2.6.12\/.bottle\/etc\/openldap\//' tests/fixtures/ldap/slapd.conf > ${SLAPD_CONF}
     ;;
     
     "*" )
@@ -20,5 +20,5 @@ case $(uname) in
 esac
 
 ${SLAPD} -f ${SLAPD_CONF} -h ldap://localhost:${PORT} -d 1 &
-ldapadd -h localhost:${PORT} -D cn=Manager,dc=example,dc=com -w ${SECRET} -f tests/fixtures/ldap/base.ldif
+ldapadd -H ldap://localhost:${PORT} -D cn=Manager,dc=example,dc=com -w ${SECRET} -f tests/fixtures/ldap/base.ldif
  
