@@ -1,8 +1,8 @@
 import { Client, Change, Attribute } from "ldapts";
 import {
   prepareAttributesDefinitions,
-  url_attribute,
-  default_attribute
+  url_attribute_writable,
+  string_attribute_writable
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { expand } from "./util.mjs";
@@ -25,18 +25,18 @@ export class ServiceLDAP extends Service {
   static attributes = prepareAttributesDefinitions(
     {
       url: {
-        ...url_attribute,
+        ...url_attribute_writable,
         needsRestart: true,
         mandatory: true
       },
       entitlements: {
         description: "attributes to build a entitlement query",
         attributes: {
-          bindDN: default_attribute,
-          base: default_attribute,
-          attribute: { ...default_attribute, default: "cn" },
-          scope: { ...default_attribute, default: "sub" },
-          filter: default_attribute
+          bindDN: string_attribute_writable,
+          base: string_attribute_writable,
+          attribute: { ...string_attribute_writable, default: "cn" },
+          scope: { ...string_attribute_writable, default: "sub" },
+          filter: string_attribute_writable
         }
       }
     },
