@@ -2,7 +2,7 @@ import test from "ava";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceLDAP } from "@kronos-integration/service-ldap";
 
-const PORT=process.env.PORT || 389;
+const PORT = process.env.PORT || 389;
 
 const config = {
   type: ServiceLDAP,
@@ -17,13 +17,16 @@ const config = {
   }
 };
 
-test("service-ldap auth ok", async t => {
+test.only("service-ldap auth ok", async t => {
   const sp = new StandaloneServiceProvider();
   const ldap = await sp.declareService(config);
 
   t.deepEqual(
     await ldap.authenticate({ username: "user1", password: "test" }),
-    { username: "user1", entitlements: new Set(["konsum","service1","service2"]) }
+    {
+      username: "user1",
+      entitlements: new Set(["konsum", "service1", "service2"])
+    }
   );
 });
 
@@ -36,7 +39,10 @@ test("service-ldap over endpoint", async t => {
       username: "user1",
       password: "test"
     }),
-    { username: "user1", entitlements: new Set(["konsum","service1","service2"]) }
+    {
+      username: "user1",
+      entitlements: new Set(["konsum", "service1", "service2"])
+    }
   );
 });
 
@@ -45,8 +51,8 @@ test("service-ldap auth invalid", async t => {
   const ldap = await sp.declareService(config);
 
   await t.throwsAsync(
-    async () => ldap.authenticate({ username: "user1", password: "invalid" }),
-  //  "Invalid credentials during a bind operation. Code: 0x31"
+    async () => ldap.authenticate({ username: "user1", password: "invalid" })
+    //  "Invalid credentials during a bind operation. Code: 0x31"
   );
 });
 
@@ -58,7 +64,7 @@ test("service-ldap wrong url", async t => {
   });
 
   await t.throwsAsync(
-    async () => ldap.authenticate({ username: "user1", password: "test" }),
-  //  Error
+    async () => ldap.authenticate({ username: "user1", password: "test" })
+    //  Error
   );
 });

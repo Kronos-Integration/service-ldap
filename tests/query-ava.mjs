@@ -69,8 +69,7 @@ test.skip("service-ldap add / delete", async t => {
       bind,
       dn
     });
-  }
-  catch {}
+  } catch {}
 
   t.is(
     await ldap.add({
