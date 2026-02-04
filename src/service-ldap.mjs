@@ -2,7 +2,8 @@ import { Client, Change, Attribute } from "ldapts";
 import {
   prepareAttributesDefinitions,
   url_attribute_writable,
-  string_attribute_writable
+  string_attribute_writable,
+  object_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { expand } from "./util.mjs";
@@ -30,6 +31,7 @@ export class ServiceLDAP extends Service {
         mandatory: true
       },
       entitlements: {
+        ...object_attribute,
         description: "attributes to build a entitlement query",
         attributes: {
           bindDN: string_attribute_writable,
@@ -161,21 +163,22 @@ export class ServiceLDAP extends Service {
     };
 
     try {
-      const bindDN = expand(this.entitlements.bindDN, values);
+      const query = expand(this.entitlements, values);
+      const bindDN = query.bindDN;
 
       this.trace(`bind ${bindDN} (${this.entitlements.bindDN})`);
 
       await client.bind(bindDN, password);
 
-      const attribute = expand(this.entitlements.attribute, values);
+      const attribute = query.attribute;
 
       const searchOptions = {
-        scope: this.entitlements.scope,
-        filter: expand(this.entitlements.filter, values),
+        scope: query.scope,
+        filter: query.filter,
         attributes: [attribute]
       };
 
-      const base = expand(this.entitlements.base, values);
+      const base = query.base;
 
       this.trace(`search ${base} ${JSON.stringify(searchOptions)}`);
 
