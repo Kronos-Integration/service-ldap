@@ -26,7 +26,7 @@ sed -isave "s/rootpw.*/rootpw ${SECRET_HASH}/" $SLAPD_CONF
 #sed -isave "s/database.*/database ${DATABASE_DIR}/" $SLAPD_CONF
 
 slapadd -n 1 -f ${SLAPD_CONF} -l tests/fixtures/ldap/base.ldif
-${SLAPD} -f ${SLAPD_CONF} -h ${URI} -d 1 &
+${SLAPD} -f ${SLAPD_CONF} -h ${URI} -d 0 &
 sleep 2
 
 ldapsearch -H ${URI} -w ${SECRET} -D cn=Manager,dc=example,dc=com -b dc=example,dc=com
