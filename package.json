@@ -30,10 +30,10 @@
     "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^11.1.7",
-    "@kronos-integration/service": "^15.7.10",
+    "@kronos-integration/endpoint": "^11.1.8",
+    "@kronos-integration/service": "^15.7.11",
     "ldapts": "^9.0.0",
-    "pacc": "^11.0.2"
+    "pacc": "^11.0.3"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.0.32",
