@@ -31,12 +31,12 @@
   },
   "dependencies": {
     "@kronos-integration/endpoint": "^11.2.0",
-    "@kronos-integration/service": "^15.7.15",
+    "@kronos-integration/service": "^15.7.22",
     "ldapts": "^9.0.0",
-    "pacc": "^11.2.3"
+    "pacc": "^11.6.0"
   },
   "devDependencies": {
-    "@kronos-integration/test-interceptor": "^7.2.2",
+    "@kronos-integration/test-interceptor": "^7.2.4",
     "ava": "^8.0.1",
     "c8": "^12.0.0",
     "documentation": "^14.0.3",
