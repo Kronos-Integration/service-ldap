@@ -33,7 +33,7 @@
     "@kronos-integration/endpoint": "^11.2.5",
     "@kronos-integration/service": "^15.7.38",
     "ldapts": "^9.2.0",
-    "pacc": "^13.2.0"
+    "pacc": "^14.1.0"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.2.5",
